@@ -106,7 +106,7 @@
   // $("#header").append(formattedSkills);
 
 
-  if(bio.skills.length > 0) {
+  if(bio.skills.length > 0) { //skills display
       $("#header").append(HTMLskillsStart);
       $("#skills").append(function() {
         var formattedSkill = [];
@@ -116,3 +116,64 @@
         } return formattedSkill;
       });
   }
+
+function displayWork() {
+  for (job in work.jobs) {
+      $("#workExperience").append(HTMLworkStart);
+      var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+      var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+      var formattedDate = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+      var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+      var formattedJob = formattedEmployer + formattedTitle + formattedDate + formattedDescription;
+      $(".work-entry:last").append(formattedJob);
+  }
+} //work display //work display
+displayWork();
+
+$(document).click(function(loc) {
+   // your code goes here
+   var x = loc.pageX;
+   var y = loc.pageY;
+   logClicks(x,y);
+ });
+
+/* InternationalizeButton \*
+ $("#main").append(internationalizeButton);
+ function inName() {
+   var internationalName = bio.name.split(" ");
+   var firstName = internationalName[0][0].toUpperCase() + internationalName[0].slice(1).toLowerCase();
+   var secondName = internationalName[1].toUpperCase();
+   return firstName + " " + secondName;
+}
+*/
+// teacher code (not working)
+// projects.display = function() {
+//   for (project in projects.projects) {
+//     $("#projects").append(HTMLprojectStart);
+//     var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+//     $(".project-entry:last").append(formattedTitle);
+//     var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+//     $(".project-entry:last").append(formattedDates);
+//     var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+//     $(".project-entry:last").append(formattedDescription);
+//   }
+// }
+
+projects.display = function() {
+  for (i = 0; i <= projects.projects.length - 1; i++) {
+    $("#projects").append(HTMLprojectStart);
+    var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[i].title);
+    $(".project-entry:last").append(formattedProjectTitle);
+    var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[i].dates);
+    $(".project-entry:last").append(formattedProjectDates);
+    var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[i].description);
+    $(".project-entry:last").append(formattedProjectDescription);
+    if (projects.projects[i].images.length > 0) {
+      for (x = 0; x <= projects.projects[i].images.length - 1; x++) {
+        var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[i].images[x]);
+        $(".project-entry:last").append(formattedImage);
+      }
+    }
+  }
+}
+projects.display();
