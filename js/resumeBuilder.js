@@ -176,7 +176,7 @@ education.display = function() {
             $(".education-entry:last").append(formattedOnlineDates);
             $(".education-entry:last").append(formattedOnlineURL);
         });
-  };
+  }
 };
 education.display();
 
