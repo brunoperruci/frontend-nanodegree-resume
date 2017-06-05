@@ -146,7 +146,8 @@ projects.display = projects.projects.forEach(function(project) {
     }
 });
 
-education.display = education.schools.forEach(function(school) {
+education.display = function() {
+  education.schools.forEach(function(school) {
     $("#education").append(HTMLschoolStart);
     var formattedSchoolName = HTMLschoolName.replace("%data%", school.name);
     var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
@@ -162,20 +163,22 @@ education.display = education.schools.forEach(function(school) {
             $(".education-entry:last").append(formattedSchoolMajors);
         });
     }
-});
-if (education.onlineCourses.length > 0) {
-    education.onlineCourses.forEach(function(onlineCourse) {
-        $(".education-entry:last").append(HTMLonlineClasses);
-        var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", onlineCourse.title);
-        var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", onlineCourse.school);
-        var formattedOnlineDates = HTMLonlineDates.replace("%data%", onlineCourse.dates);
-        var formattedOnlineURL = HTMLonlineURL.replace("%data%", onlineCourse.url);
-        $(".education-entry:last").append(formattedOnlineTitle);
-        $(".education-entry:last").append(formattedOnlineSchool);
-        $(".education-entry:last").append(formattedOnlineDates);
-        $(".education-entry:last").append(formattedOnlineURL);
-    });
-}
+  });
+    if (education.onlineCourses.length > 0) {
+        education.onlineCourses.forEach(function(onlineCourse) {
+            $(".education-entry:last").append(HTMLonlineClasses);
+            var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", onlineCourse.title);
+            var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", onlineCourse.school);
+            var formattedOnlineDates = HTMLonlineDates.replace("%data%", onlineCourse.dates);
+            var formattedOnlineURL = HTMLonlineURL.replace("%data%", onlineCourse.url);
+            $(".education-entry:last").append(formattedOnlineTitle);
+            $(".education-entry:last").append(formattedOnlineSchool);
+            $(".education-entry:last").append(formattedOnlineDates);
+            $(".education-entry:last").append(formattedOnlineURL);
+        });
+  };
+};
+education.display();
 
 $("img").css("max-height", "250px");
 
