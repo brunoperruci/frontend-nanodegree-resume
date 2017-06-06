@@ -119,7 +119,8 @@ bio.display = function() {
 };
 bio.display();
 
-work.display = work.jobs.forEach(function(job) {
+work.display = function() {
+  work.jobs.forEach(function(job) {
     $("#workExperience").append(HTMLworkStart);
     var formattedEmployer = HTMLworkEmployer.replace("%data%", job.employer);
     var formattedTitle = HTMLworkTitle.replace("%data%", job.title);
@@ -128,9 +129,12 @@ work.display = work.jobs.forEach(function(job) {
     var formattedJobLocation = HTMLworkLocation.replace("%data%", job.location);
     var formattedJob = formattedEmployer + formattedTitle + formattedDates + formattedDescription + formattedJobLocation;
     $(".work-entry:last").append(formattedJob);
-});
+  });
+};
+work.display();
 
-projects.display = projects.projects.forEach(function(project) {
+projects.display = function() {
+  projects.projects.forEach(function(project) {
     $("#projects").append(HTMLprojectStart);
     var formattedProjectTitle = HTMLprojectTitle.replace("%data%", project.title);
     var formattedProjectDates = HTMLprojectDates.replace("%data%", project.dates);
@@ -144,7 +148,9 @@ projects.display = projects.projects.forEach(function(project) {
             $(".project-entry:last").append(formattedImage);
         });
     }
-});
+  });
+};
+projects.display();
 
 education.display = function() {
   education.schools.forEach(function(school) {
